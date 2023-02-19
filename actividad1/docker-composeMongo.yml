@@ -1,0 +1,37 @@
+
+version: '3'
+
+services:
+  mongodb:
+    image: mongo
+    container_name: my_mongoAPF2
+    volumes:
+      - mi_volumenAPF:/data/db
+    networks:
+      - mi_redAPF
+
+         
+  mongo-express:
+    image: mongo-express 
+    container_name: my_mongoExpressAPF2
+    ports:
+      - "8081:8081"
+    environment:
+      - ME_CONFIG_MONGODB_SERVER=mongodb
+      
+    volumes:
+      - mi_volumenAPF:/data/db
+    networks:
+      - mi_redAPF
+        
+    
+    depends_on: 
+      - mongodb
+
+volumes:
+  mi_volumenAPF:
+    
+
+networks:
+  mi_redAPF:
+    
